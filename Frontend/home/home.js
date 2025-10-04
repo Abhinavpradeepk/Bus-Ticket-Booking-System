@@ -1,31 +1,24 @@
+let buses = [];
+
 document.addEventListener("DOMContentLoaded", function() {
     const fromSelect = document.getElementById("from");
     const toSelect = document.getElementById("to");
     const searchBtn = document.querySelector(".book-btn");
     const busResults = document.getElementById("busResults");
 
-    const buses = [
-        { id: 1, from: "palakkad", to: "wayanad", time: "early-morning", price: 500 },
-        { id: 2, from: "palakkad", to: "bangalore", time: "morning", price: 800 },
-        { id: 3, from: "coimbatore", to: "thrissur", time: "afternoon", price: 600 },
-        { id: 4, from: "wayanad", to: "bangalore", time: "night", price: 1000 },
-        { id: 5, from: "thrissur", to: "palakkad", time: "morning", price: 400 },
-    ];
+    // Fetch buses from backend
+    fetch("http://localhost:5000/buses")
+        .then(res => res.json())
+        .then(data => {
+            buses = data.map(bus => ({
+                id: bus.id,
+                from: bus.from_location,
+                to: bus.to_location,
+                time: bus.time,
+                price: bus.price
+            }));
+        });
 
-
-    fromSelect.addEventListener("change", function() {
-        const fromValue = this.value;
-        for (let option of toSelect.options) option.disabled = false;
-        if (fromValue) {
-            const optionToDisable = toSelect.querySelector(`option[value="${fromValue}"]`);
-            if (optionToDisable) {
-                optionToDisable.disabled = true;
-                if (toSelect.value === fromValue) toSelect.value = "";
-            }
-        }
-    });
-
- 
     searchBtn.addEventListener("click", function() {
         const from = fromSelect.value;
         const to = toSelect.value;
@@ -54,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <h3>Bus ${bus.id}</h3>
                     <p><strong>From:</strong> ${bus.from}</p>
                     <p><strong>To:</strong> ${bus.to}</p>
-                    <p><strong>Departure Time:</strong> ${time.replace("-", " ").toUpperCase()}</p>
+                    <p><strong>Departure Time:</strong> ${time}</p>
                     <p><strong>Price:</strong> ₹${bus.price}</p>
                     <p><strong>Date:</strong> ${date}</p>
                     <button onclick="bookBus(${bus.id})">Book Now</button>
@@ -64,3 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function bookBus(id) {
+    alert("Bus " + id + " booked!");
+}

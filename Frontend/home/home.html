@@ -1,60 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="home.css" rel="stylesheet">
-    <title>Bus Ticket Booking System</title>
+    <title>Bus Booking</title>
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <div class="main">
-        <nav>
-            <h1>Welcome, {username}</h1>
-        </nav>
+    <h1>Bus Booking System</h1>
 
-        <div class="routes">
-           
-         
-            <label for="from">From</label>
-            <select name="from" id="from">
-                <option value="">-- Select --</option>
-                <option value="palakkad">Palakkad</option>
-                <option value="wayanad">Wayanad</option>
-                <option value="bangalore">Bangalore</option>
-                <option value="coimbatore">Coimbatore</option>
-                <option value="thrissur">Thrissur</option>
-            </select>
+    <select id="from">
+        <option value="">Select From</option>
+        <option value="palakkad">Palakkad</option>
+        <option value="coimbatore">Coimbatore</option>
+        <option value="thrissur">Thrissur</option>
+        <option value="wayanad">Wayanad</option>
+        <option value="bangalore">Bangalore</option>
+    </select>
 
-           
-            <label for="to">To</label>
-            <select name="to" id="to">
-                <option value="">-- Select --</option>
-                <option value="palakkad">Palakkad</option>
-                <option value="wayanad">Wayanad</option>
-                <option value="bangalore">Bangalore</option>
-                <option value="coimbatore">Coimbatore</option>
-                <option value="thrissur">Thrissur</option>
-            </select>
+    <select id="to">
+        <option value="">Select To</option>
+        <option value="palakkad">Palakkad</option>
+        <option value="coimbatore">Coimbatore</option>
+        <option value="thrissur">Thrissur</option>
+        <option value="wayanad">Wayanad</option>
+        <option value="bangalore">Bangalore</option>
+    </select>
 
-            
-            <label for="date">Date of Journey</label>
-            <input type="date" id="date" name="date" required>
+    <input type="date" id="date">
+    <select id="time">
+        <option value="">Select Time</option>
+        <option value="early-morning">Early Morning</option>
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+        <option value="night">Night</option>
+    </select>
+    <button class="book-btn">Search</button>
 
-            
-            <label for="time">Preferred Time</label>
-            <select name="time" id="time">
-                <option value="early-morning">Early Morning (12am – 6am)</option>
-                <option value="morning">Morning (6am – 12pm)</option>
-                <option value="afternoon">Afternoon (12pm – 6pm)</option>
-                <option value="night">Night (6pm – 12am)</option>
-            </select>
-
-            
-            <button class="book-btn">Search</button>
-        </div>
-        
-    </div>
     <div id="busResults"></div>
-    <script src="home.js"></script>
+
+<script src="home.js"></script> <!-- Points to the same folder -->
 </body>
 </html>
